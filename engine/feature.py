@@ -1,5 +1,5 @@
 import os
-from pipes import quote
+from shlex import quote  
 import re
 import sqlite3
 import struct
