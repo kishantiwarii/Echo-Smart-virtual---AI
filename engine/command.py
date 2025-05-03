@@ -55,7 +55,33 @@ def allCommands():
             openCommand(query)  
         elif "on youtube" in query:  
             from engine.feature import PlayYoutube  
-            PlayYoutube(query)  
+            PlayYoutube(query)
+           
+        elif "send message" in query or "phone call" in query or "video call" in query:
+            from engine.feature import findContact, whatsApp
+            flag = ""
+            contact_no, name = findContact(query)
+            if(contact_no != 0):
+                # speak("Which mode you want to use whatsapp or mobile")
+                # preferance = takecommand()
+                # print(preferance)
+
+
+                    if "send message" in query: 
+                        flag = "message"
+                        speak("what message to send")
+                        query = takecommand()
+                        # sendMessage(message, contact_no, name)
+                    elif "phone call" in query:
+                        # makeCall(name, contact_no)
+                        flag = "call"
+                    else:
+                        # speak("please try again")
+                        flag = "video call"
+           
+                                        
+                    whatsApp(contact_no, query, flag, name)
+     
         else:  
             print("not run")  
     except:  
